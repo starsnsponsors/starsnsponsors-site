@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RisingStars Project — Stars & Sponsors</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0f5d4e;
+      --text:#f6f1e7;
+      --muted:#e7dcc8;
+      --accent:#d2a34a;
+      --btn:#d2a34a;
+      --btn-text:#1e1e1e;
+      --btn-hover:#c29037;
+      --maxw: 940px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;background:var(--bg);color:var(--text);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji",sans-serif;
+      line-height:1.6;display:flex;align-items:center;justify-content:center;padding:40px 18px;
+    }
+    .wrap{width:100%;max-width:var(--maxw);text-align:center}
+    .switcher{
+      position:fixed;top:16px;right:16px;background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.2);backdrop-filter: blur(6px);color:var(--text);
+      padding:8px 14px;border-radius:999px;font-size:14px;cursor:pointer;
+      transition:transform .08s ease, background .2s ease;
+    }
+    .switcher:hover{ transform:translateY(-1px); background:rgba(255,255,255,.18) }
+    .kicker{
+      font-family:"Playfair Display", serif;letter-spacing:.12em;text-transform:uppercase;
+      color:var(--muted);font-size:20px;margin-bottom:18px;
+    }
+    h1{
+      font-family:"Playfair Display", serif;font-weight:700;font-size:clamp(34px, 6vw, 64px);
+      line-height:1.15;margin:0 0 18px;letter-spacing:.01em;
+    }
+    h1 .amp{ color:var(--accent) }
+    h2{
+      font-family:"Playfair Display", serif;font-weight:600;font-size:clamp(20px, 3.5vw, 34px);
+      margin:0 0 28px;color:var(--muted);
+    }
+    .lead{max-width:780px;margin:0 auto 30px;color:var(--muted);font-size:clamp(16px, 2.3vw, 18px)}
+    .bullets{display:grid;gap:18px;max-width:820px;margin:30px auto 42px;text-align:left;font-size:clamp(16px, 2.2vw, 18px)}
+    .bullet{
+      display:grid;grid-template-columns:auto 1fr;gap:12px 14px;align-items:start;padding:12px 14px;
+      border-radius:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);
+    }
+    .bullet .emoji{ font-size:20px; line-height:1.1 }
+    .bullet b{ font-weight:600; color:var(--text) }
+    .coming{letter-spacing:.28em;color:var(--accent);font-weight:700;margin:26px 0 6px;font-size:clamp(14px, 2.2vw, 18px)}
+    .sub{color:var(--muted);margin:0 0 22px;font-size:clamp(15px, 2.1vw, 17px)}
+    .cta{
+      display:inline-block;margin-top:6px;background:var(--btn);color:var(--btn-text);
+      padding:14px 26px;border-radius:12px;font-weight:700;letter-spacing:.04em;text-decoration:none;
+      transition:transform .08s ease, background .2s ease, box-shadow .2s ease;
+      box-shadow:0 8px 24px rgba(210,163,74,.25);
+    }
+    .cta:hover{ background:var(--btn-hover); transform:translateY(-1px) }
+    .footer{margin-top:28px;color:var(--muted);font-size:14px}
+    .footer b{ color:var(--text) }
+    .footer a{ color:var(--text); text-decoration:underline; text-underline-offset:3px }
+  </style>
+</head>
+<body>
+  <button class="switcher" id="langSwitch" aria-label="Dili değiştir">🇹🇷 Türkçe</button>
+
+  <main class="wrap">
+    <div class="kicker" data-i18n="kicker">RISINGSTARS PROJESİ</div>
+
+    <h1 data-i18n="title">
+      STARS <span class="amp">&</span> SPONSORS
+    </h1>
+
+    <h2 data-i18n="subtitle">
+      Yarının yıldızlarının bugünün sponsorlarıyla buluştuğu yer
+    </h2>
+
+    <p class="lead" data-i18n="lead">
+      Genç sporcuları, girişimcileri ve yaratıcıları; onlara inanan marka ve
+      sponsorlarla buluşturarak güçlendiriyoruz.
+    </p>
+
+    <section class="bullets">
+      <div class="bullet">
+        <div class="emoji">✨</div>
+        <div>
+          <b data-i18n="b1h">Yetenekleri Destekleyin</b>
+          — <span data-i18n="b1p">Gençlerin yükselmesi ve parlaması için fırsatlar sunuyoruz.</span>
+        </div>
+      </div>
+      <div class="bullet">
+        <div class="emoji">🤝</div>
+        <div>
+          <b data-i18n="b2h">Markalarla Bağlantı Kurun</b>
+          — <span data-i18n="b2p">Yükselen yıldızlarla sponsorlar arasında köprüler kuruyoruz.</span>
+        </div>
+      </div>
+      <div class="bullet">
+        <div class="emoji">🌍</div>
+        <div>
+          <b data-i18n="b3h">Etki Yaratın</b>
+          — <span data-i18n="b3p">Sponsorlukları sosyal değişim için güçlü bir araca dönüştürüyoruz.</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="coming" data-i18n="coming">ÇOK YAKINDA</div>
+    <p class="sub" data-i18n="notify">Yayına çıktığımızda ilk siz haberdar olun.</p>
+
+    <a href="#" class="cta" data-i18n="cta">BEKLEME LİSTEMİZE KATILIN</a>
+
+    <div class="footer">
+      <div data-i18n="powered">
+        <a href="https://leonaanelia.com/" target="_blank" rel="noopener noreferrer"><b>LEONA ANELIA</b></a> tarafından desteklenmektedir
+      </div>
+      <div data-i18n="rights">© <span data-year></span> Tüm hakları saklıdır.</div>
+    </div>
+  </main>
+
+  <script>
+    // Simple i18n dictionary (includes anchor + dynamic year placeholder)
+    const i18n = {
+      tr: {
+        kicker: "RISINGSTARS PROJESİ",
+        title: "STARS <span class='amp'>&</span> SPONSORS",
+        subtitle: "Yarının yıldızlarının bugünün sponsorlarıyla buluştuğu yer",
+        lead: "Genç sporcuları, girişimcileri ve yaratıcıları; onlara inanan marka ve sponsorlarla buluşturarak güçlendiriyoruz.",
+        b1h: "Yetenekleri Destekleyin",
+        b1p: "Gençlerin yükselmesi ve parlaması için fırsatlar sunuyoruz.",
+        b2h: "Markalarla Bağlantı Kurun",
+        b2p: "Yükselen yıldızlarla sponsorlar arasında köprüler kuruyoruz.",
+        b3h: "Etki Yaratın",
+        b3p: "Sponsorlukları sosyal değişim için güçlü bir araca dönüştürüyoruz.",
+        coming: "ÇOK YAKINDA",
+        notify: "Yayına çıktığımızda ilk siz haberdar olun.",
+        cta: "BEKLEME LİSTEMİZE KATILIN",
+        powered: `<a href="https://leonaanelia.com/" target="_blank" rel="noopener noreferrer"><b>LEONA ANELIA</b></a> tarafından desteklenmektedir`,
+        rights: "© <span data-year></span> Tüm hakları saklıdır.",
+        switchLabel: "🇹🇷 Türkçe"
+      },
+      en: {
+        kicker: "RISINGSTARS PROJECT",
+        title: "STARS <span class='amp'>&</span> SPONSORS",
+        subtitle: "Where tomorrow’s stars meet today’s sponsors",
+        lead: "We empower young athletes, entrepreneurs, and creatives by connecting them with the brands and sponsors who believe in their future.",
+        b1h: "Support Talent",
+        b1p: "Providing opportunities for youth to rise and shine.",
+        b2h: "Connect with Brands",
+        b2p: "Building bridges between rising stars and sponsors.",
+        b3h: "Create Impact",
+        b3p: "Turning sponsorship into a force for social change.",
+        coming: "COMING SOON",
+        notify: "Be the first to know when we launch.",
+        cta: "JOIN OUR WAITLIST",
+        powered: `Powered by <a href="https://leonaanelia.com/" target="_blank" rel="noopener noreferrer"><b>LEONA ANELIA</b></a>`,
+        rights: "© <span data-year></span> All rights reserved.",
+        switchLabel: "🇬🇧 English"
+      }
+    };
+
+    // Apply language to all [data-i18n] elements
+    function applyLang(lang){
+      document.documentElement.lang = lang;
+      document.querySelectorAll("[data-i18n]").forEach(el=>{
+        const key = el.getAttribute("data-i18n");
+        const html = i18n[lang][key];
+        if (html !== undefined) el.innerHTML = html;
+      });
+      // set dynamic year
+      const year = new Date().getFullYear();
+      document.querySelectorAll("[data-year]").forEach(el => el.textContent = year);
+
+      const btn = document.getElementById("langSwitch");
+      btn.textContent = (lang === "tr") ? "🇹🇷 Türkçe" : "🇬🇧 English";
+      btn.setAttribute("aria-label", (lang === "tr") ? "Dili değiştir" : "Change language");
+
+      try { localStorage.setItem("rs-lang", lang); } catch(e){}
+    }
+
+    // Toggle handler
+    document.getElementById("langSwitch").addEventListener("click", ()=>{
+      const current = document.documentElement.lang || "tr";
+      applyLang(current === "tr" ? "en" : "tr");
+    });
+
+    // Initial language: Turkish by default, but respect saved preference
+    (function init(){
+      let lang = "tr";
+      try {
+        const saved = localStorage.getItem("rs-lang");
+        if (saved === "en" || saved === "tr") lang = saved;
+      } catch(e){}
+      applyLang(lang);
+    })();
+  </script>
+</body>
+</html>
