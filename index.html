@@ -206,7 +206,7 @@
     <p class="sub" data-i18n="notify">Yayına çıktığımızda ilk siz haberdar olun.</p>
 
     <!-- Waitlist: opens your Google Form -->
-    <a href="https://forms.gle/5xWYR3NpCsUGFA6s7" target="_blank" rel="noopener" class="cta" data-i18n="cta">
+    <a href="https://forms.gle/5xWYR3NpCsUGFA6s7" target="_blank" rel="noopener" class="cta" data-i18n="cta" id="waitlistBtn">
       BEKLEME LİSTEMİZE KATILIN
     </a>
 
@@ -236,7 +236,8 @@
         cta: "BEKLEME LİSTEMİZE KATILIN",
         powered: `<a href="https://leonaanelia.com/" target="_blank" rel="noopener noreferrer"><b>LEONA ANELIA</b></a> tarafından desteklenmektedir`,
         rights: "© <span data-year></span> Tüm hakları saklıdır.",
-        switchLabel: "🇹🇷 Türkçe"
+        switchLabel: "🇹🇷 Türkçe",
+        waitlistUrl: "https://forms.gle/5xWYR3NpCsUGFA6s7"
       },
       en: {
         kicker: "RISINGSTARS PROJECT",
@@ -254,7 +255,8 @@
         cta: "JOIN OUR WAITLIST",
         powered: `Powered by <a href="https://leonaanelia.com/" target="_blank" rel="noopener noreferrer"><b>LEONA ANELIA</b></a>`,
         rights: "© <span data-year></span> All rights reserved.",
-        switchLabel: "🇬🇧 English"
+        switchLabel: "🇬🇧 English",
+        waitlistUrl: "https://forms.gle/mrJuf88Xka4Fh5Co8"
       }
     };
 
@@ -269,6 +271,11 @@
       const btn = document.getElementById("langSwitch");
       btn.textContent = (lang === "tr") ? "🇹🇷 Türkçe" : "🇬🇧 English";
       btn.setAttribute("aria-label", (lang === "tr") ? "Dili değiştir" : "Change language");
+      // Update waitlist button URL based on language
+      const waitlistBtn = document.getElementById("waitlistBtn");
+      if (waitlistBtn && i18n[lang].waitlistUrl) {
+        waitlistBtn.href = i18n[lang].waitlistUrl;
+      }
       try { localStorage.setItem("rs-lang", lang); } catch(e){}
     }
 
