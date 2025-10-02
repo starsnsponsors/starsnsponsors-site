@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 240">
+  <!-- STARS text (outlined) -->
+  <g fill="none" stroke="currentColor" stroke-width="2" opacity="0.7">
+    <text x="20" y="180" font-family="Arial, sans-serif" font-size="140" font-weight="bold">STARS</text>
+  </g>
+  
+  <!-- Lightning bolt icon (solid black) -->
+  <g transform="translate(480, 20)" fill="#000">
+    <path d="M50 0L30 80h30L40 200l50-120H60L80 0z"/>
+  </g>
+  
+  <!-- SPONSORS text (outlined) -->
+  <g fill="none" stroke="currentColor" stroke-width="2" opacity="0.7">
+    <text x="620" y="180" font-family="Arial, sans-serif" font-size="140" font-weight="bold">SPONSORS</text>
+  </g>
+</svg>

@@ -34,23 +34,17 @@
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji",sans-serif;
       line-height:1.6;
       min-height:100svh;              /* accounts for mobile browser UI */
-      display:block;                  /* no vertical centering by default */
-      padding:calc(20px + var(--safe-top)) 18px 40px 18px;
-      padding-left:calc(18px + var(--safe-left));
-      padding-right:calc(18px + var(--safe-right));
+      padding:0;                      /* Remove padding, handle in content wrapper */
+      overflow-x:hidden;              /* Prevent horizontal scroll */
     }
 
-    /* Center on larger screens */
-    @media (min-width: 900px){
-      body{
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        padding:40px calc(18px + var(--safe-right));
-      }
+    .wrap{
+      width:100%;
+      max-width:var(--maxw);
+      text-align:center;
+      margin:0 auto;
+      position:relative;
     }
-
-    .wrap{width:100%;max-width:var(--maxw);text-align:center;margin:0 auto}
 
     .switcher{
       position:fixed;
@@ -69,13 +63,59 @@
     }
     .switcher:hover{ transform:translateY(-1px); background:rgba(255,255,255,.18) }
 
+    /* Fixed header container */
+    .fixed-header{
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      z-index:5;
+      background:linear-gradient(180deg, var(--bg) 0%, var(--bg) 70%, transparent 100%);
+      backdrop-filter:blur(8px);
+      padding:calc(100px + 12px + var(--safe-top)) 18px 20px;
+      padding-left:calc(18px + var(--safe-left));
+      padding-right:calc(18px + var(--safe-right));
+      text-align:center;
+    }
+
     .kicker{
+      display: none;
       font-family:"Playfair Display", serif;
       letter-spacing:.12em;
       text-transform:uppercase;
       color:var(--muted);
-      font-size:18px;
-      margin:10px 0 14px;
+      font-size:16px;
+      margin:0 0 8px;
+    }
+
+    /* Fixed header logo */
+    .fixed-header .logo{
+      width:100%;
+      max-width:640px;
+      height:auto;
+      margin:0;
+      color:var(--text);
+      filter:drop-shadow(0 2px 8px rgba(0,0,0,0.4));
+    }
+
+    /* Content wrapper with proper spacing for fixed header */
+    .content-wrapper{
+      padding-top:250px;              /* Adjusted for increased header padding */
+      padding-bottom:40px;
+      padding-left:calc(18px + var(--safe-left));
+      padding-right:calc(18px + var(--safe-right));
+      min-height:100vh;               /* Ensure full viewport height */
+    }
+
+    @media (max-width: 768px){
+      .fixed-header .logo{ max-width:280px }
+      .kicker{ font-size:14px }
+      .content-wrapper{ padding-top:210px }
+    }
+    @media (max-width: 480px){
+      .fixed-header .logo{ max-width:240px }
+      .kicker{ font-size:13px }
+      .content-wrapper{ padding-top:190px }
     }
 
     h1{
@@ -86,6 +126,24 @@
       margin:0 0 16px;
       letter-spacing:.01em;
       word-break:break-word;
+    }
+
+    /* Logo styling - mobile friendly */
+    .logo{
+      width:100%;
+      max-width:960px;
+      height:auto;
+      margin:0 0 20px;
+      color:var(--text);
+      filter:drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+    }
+
+    /* Responsive logo sizing */
+    @media (max-width: 768px){
+      .logo{ max-width:320px; margin:0 0 16px }
+    }
+    @media (max-width: 480px){
+      .logo{ max-width:280px; margin:0 0 12px }
     }
 
     /* Plain ampersand (no special styling) */
@@ -162,15 +220,17 @@
 <body>
   <button class="switcher" id="langSwitch" aria-label="Dili değiştir">🇹🇷 Türkçe</button>
 
-  <main class="wrap">
+  <!-- Fixed Header -->
+  <header class="fixed-header">
     <div class="kicker" data-i18n="kicker">RISINGSTARS PROJESİ</div>
+    <img src="ss_logo_yellow_white.png" alt="Stars & Sponsors" class="logo" />
+  </header>
 
-    <h1 data-i18n="title">
-      STARS <span class="amp">&</span> SPONSORS
-    </h1>
-
+  <!-- Main Content -->
+  <main class="wrap">
+    <div class="content-wrapper">
     <h2 data-i18n="subtitle">
-      Yarının yıldızlarının bugünün sponsorlarıyla buluştuğu yer
+      Yarının yıldızlarının<br/> bugünün sponsorlarıyla buluştuğu yer
     </h2>
 
     <p class="lead" data-i18n="lead">
@@ -216,6 +276,7 @@
       </div>
       <div data-i18n="rights">© <span data-year></span> Tüm hakları saklıdır.</div>
     </div>
+    </div> <!-- Close content-wrapper -->
   </main>
 
   <script>
@@ -223,7 +284,7 @@
       tr: {
         kicker: "RISINGSTARS PROJESİ",
         title: "STARS <span class='amp'>&</span> SPONSORS",
-        subtitle: "Yarının yıldızlarının bugünün sponsorlarıyla buluştuğu yer",
+        subtitle: "Yarının yıldızlarının<br/> bugünün sponsorlarıyla buluştuğu yer",
         lead: "Genç sporcuları, girişimcileri ve yaratıcıları; onlara inanan marka ve sponsorlarla buluşturarak güçlendiriyoruz.",
         b1h: "Yetenekleri Destekleyin",
         b1p: "Gençlerin yükselmesi ve parlaması için fırsatlar sunuyoruz.",
