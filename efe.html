@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Yükselen Yıldız #001 – Efe Kabataş</title>
+<style>
+  :root{
+    --bg:#1b1f1e; --bg-2:#141715; --accent:#8bc34a;
+    --text:#f2f4f3; --muted:#b7bbb9; --card:#0f1110; --frame:#2a2d2b;
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-right: env(safe-area-inset-right, 0px);
+    --safe-left: env(safe-area-inset-left, 0px);
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0}
+  body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.25}
+
+  /* Frame */
+  .frame{min-height:100%;border:2px solid var(--frame);padding:28px;position:relative;padding-top:200px;}
+
+  /* Top navigation buttons container */
+  .top-nav{
+    position:fixed; top:calc(12px + var(--safe-top)); left:0; right:0; z-index:10;
+    display:flex; justify-content:space-between; 
+    padding-left:calc(12px + var(--safe-left));
+    padding-right:calc(12px + var(--safe-right));
+    pointer-events:none;
+  }
+  
+  .top-nav > *{
+    pointer-events:auto;
+  }
+  
+  .switcher, .home-btn{
+    background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.2);
+    backdrop-filter: blur(6px); color:var(--text); padding:8px 14px; border-radius:999px;
+    font-size:14px; font-weight:700; cursor:pointer; transition:transform .08s ease, background .2s ease;
+    text-decoration:none; display:inline-block;
+  }
+  .switcher:hover, .home-btn:hover{ transform:translateY(-1px); background:rgba(255,255,255,.18) }
+
+  /* Fixed header container */
+  .fixed-header{
+    position:fixed; top:0; left:0; right:0; z-index:5;
+    background:linear-gradient(180deg, var(--bg) 0%, var(--bg) 70%, transparent 100%);
+    backdrop-filter:blur(8px);
+    padding:calc(50px + 12px + var(--safe-top)) 18px 20px;
+    padding-left:calc(18px + var(--safe-left));
+    padding-right:calc(18px + var(--safe-right));
+    text-align:center;
+  }
+  .kicker{ font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-size:16px; margin:0 0 8px; }
+  .fixed-header .logo{ width:100%; max-width:640px; height:auto; margin:0; color:var(--text); filter:drop-shadow(0 2px 8px rgba(0,0,0,0.4)); }
+
+  /* Hero section */
+  .hero{
+    position: relative;
+    min-height: calc(100vh - 200px);
+    background:
+      linear-gradient(90deg, var(--bg-2) 0%, rgba(20,23,21,0.88) 46%, rgba(20,23,21,0.30) 62%, rgba(20,23,21,0) 74%),
+      url("img/efe.png") right center / contain no-repeat;
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+  .content{ max-width:780px; padding:24px 24px 36px }
+
+  .eyebrow{ font-weight:800; letter-spacing:.02em; color:var(--accent); font-size:clamp(22px,3vw,44px); margin:8px 0 6px }
+  h1{ margin:0 0 18px; font-size:clamp(44px,7vw,88px); font-weight:900; letter-spacing:.02em }
+  .quote{ font-size:clamp(20px,2.6vw,34px); margin:10px 0 28px }
+
+  /* Goal badge */
+  .goal{
+    display:inline-flex; align-items:center; gap:16px;
+    background:var(--accent); color:#0a0b0a;
+    border-radius:6px; padding:16px 22px 16px 18px;
+    font-weight:800; font-size:clamp(16px,2vw,24px);
+    box-shadow:0 2px 0 rgba(0,0,0,.25) inset; margin:6px 0 38px
+  }
+  .goal svg{ width:48px; height:48px; flex:0 0 48px; display:block }
+  .goal b{ font-weight:900 }
+
+  .powered{ font-weight:900; font-size:clamp(16px,1.8vw,22px); margin:8px 0 }
+  .sub{ color:var(--muted); font-size:clamp(14px,1.6vw,18px); margin-bottom:40px }
+  .contact{ margin-top:36px; font-size:clamp(14px,1.8vw,22px) }
+
+  @media (max-width: 768px){
+    .fixed-header .logo{ max-width:280px }
+    .kicker{ font-size:14px }
+    .frame{ padding-top:170px }
+  }
+  @media (max-width: 480px){
+    .fixed-header .logo{ max-width:240px }
+    .kicker{ font-size:13px }
+    .frame{ padding-top:160px }
+  }
+  
+  @media (max-width:860px){ .hero{min-height:auto;padding-bottom:40px} .content{max-width:100%} }
+</style>
+</head>
+<body>
+<!-- Top Navigation Buttons -->
+<div class="top-nav">
+  <a href="campaigns.html" class="home-btn" data-i18n="back">Kampanyalar</a>
+  <button id="langSwitch" class="switcher" aria-label="Dili değiştir">🇹🇷 Türkçe</button>
+</div>
+
+<!-- Fixed Header -->
+<header class="fixed-header">
+  <div class="kicker" data-i18n="kicker">RISINGSTARS PROJESİ</div>
+  <img src="ss_logo_yellow_white.png" alt="Stars & Sponsors" class="logo" />
+</header>
+
+  <div class="frame">
+    <section class="hero" role="img" aria-label="Kask görseli sağda">
+      <div class="content">
+        <div class="eyebrow" data-i18n="eyebrow">YÜKSELEN YILDIZ #001</div>
+        <h1>EFE KABATAŞ</h1>
+
+        <div class="quote" data-i18n="quote-tr">"Hız benim dilimdir -<br>amaç yakıtımdır"</div>
+
+        <div class="goal" aria-label="Kampanya hedefi">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <circle cx="32" cy="32" r="30" fill="none" stroke="#0f1110" stroke-width="6"/>
+            <circle cx="32" cy="32" r="20" fill="none" stroke="#0f1110" stroke-width="6"/>
+            <circle cx="32" cy="32" r="10" fill="#0f1110"/>
+            <circle cx="32" cy="32" r="4" fill="var(--accent)"/>
+          </svg>
+          <div><b data-i18n="goal">KAMPANYA HEDEFİ:</b> <span>35.000 €</span></div>
+        </div>
+
+        <div class="powered" data-i18n="powered">STARS & SPONSORS TARAFINDAN DESTEKLENİYOR</div>
+        <div class="sub" data-i18n="tagline">Yarının yıldızlarının bugünün sponsorlarıyla buluştuğu yer</div>
+
+        <div class="contact"><span data-i18n="contact">İletişim</span>:
+          senihaozgur@hotmail.com &nbsp; +90 (544) 270 11 17
+        </div>
+      </div>
+    </section>
+  </div>
+
+<script>
+/* i18n strings */
+const rsStrings = {
+  tr: {
+    kicker: "RISINGSTARS PROJESİ",
+    back: "Kampanyalar",
+    eyebrow: "YÜKSELEN YILDIZ #001",
+    "quote-tr": "\"Hız benim dilimdir -<br>amaç yakıtımdır\"",
+    "quote-en": "\"Speed is my language -<br>purpose is my fuel\"",
+    goal: "KAMPANYA HEDEFİ:",
+    powered: "STARS & SPONSORS TARAFINDAN DESTEKLENİYOR",
+    tagline: "Yarının yıldızlarının bugünün sponsorlarıyla buluştuğu yer",
+    contact: "İletişim",
+    switchLabel: "🇹🇷 Türkçe"
+  },
+  en: {
+    kicker: "RISINGSTARS PROJECT",
+    back: "Campaigns",
+    eyebrow: "RISING STAR #001",
+    "quote-tr": "\"Speed is my language -<br>purpose is my fuel\"",
+    "quote-en": "\"Speed is my language -<br>purpose is my fuel\"",
+    goal: "CAMPAIGN GOAL:",
+    powered: "POWERED BY STARS & SPONSORS",
+    tagline: "Where tomorrow's stars meet today's sponsors",
+    contact: "Contact",
+    switchLabel: "🇬🇧 English"
+  }
+};
+
+function applyLang(lang){
+  document.documentElement.lang = lang;
+
+  // Apply base keys
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const key = el.getAttribute("data-i18n");
+    const map = rsStrings[lang];
+    if(map && map[key] !== undefined){
+      el.innerHTML = map[key];
+    }
+  });
+
+  // Handle the quote which uses different keys to keep <br> intact
+  const quote = document.querySelector(".quote");
+  if (quote){
+    quote.innerHTML = (lang === "tr") ? rsStrings.tr["quote-tr"] : rsStrings.en["quote-en"];
+  }
+
+  // Update switcher label + aria
+  const btn = document.getElementById("langSwitch");
+  btn.textContent = (lang === "en") ? rsStrings.tr.switchLabel : rsStrings.en.switchLabel;
+  btn.setAttribute("aria-label", (lang === "en") ? "Dili değiştir" : "Change language");
+
+  try{ localStorage.setItem("rs-lang", lang); }catch(e){}
+}
+
+// Click toggles between tr/en (same behavior as main page)
+document.getElementById("langSwitch").addEventListener("click", ()=>{
+  const current = document.documentElement.lang || "tr";
+  applyLang(current === "tr" ? "en" : "tr");
+});
+
+// Init: default Turkish, then respect saved choice if present
+(function init(){
+  let lang = "tr"; // default
+  try{
+    const saved = localStorage.getItem("rs-lang");
+    if (saved === "en" || saved === "tr") lang = saved;
+  }catch(e){}
+  applyLang(lang);
+})();
+</script>
+</body>
+</html>

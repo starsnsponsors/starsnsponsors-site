@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>RisingStars Project — Stars & Sponsors</title>
 
+  <!-- (kept as-is from your main page) -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
@@ -16,6 +17,8 @@
       --btn:#d2a34a;
       --btn-text:#1e1e1e;
       --btn-hover:#c29037;
+      --card:#ffffff;            /* bright card bg for new section */
+      --card-text:#1e1e1e;
       --maxw: 940px;
       --safe-top: env(safe-area-inset-top, 0px);
       --safe-right: env(safe-area-inset-right, 0px);
@@ -23,29 +26,20 @@
       --safe-bottom: env(safe-area-inset-bottom, 0px);
     }
     *{box-sizing:border-box}
-
     html,body{height:100%}
-
-    /* Mobile-first: start at top; avoid clipping on small viewports */
     body{
       margin:0;
       background:var(--bg);
       color:var(--text);
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji",sans-serif;
       line-height:1.6;
-      min-height:100svh;              /* accounts for mobile browser UI */
-      padding:0;                      /* Remove padding, handle in content wrapper */
-      overflow-x:hidden;              /* Prevent horizontal scroll */
+      min-height:100svh;
+      padding:0;
+      overflow-x:hidden;
     }
+    .wrap{ width:100%; max-width:var(--maxw); text-align:center; margin:0 auto; position:relative }
 
-    .wrap{
-      width:100%;
-      max-width:var(--maxw);
-      text-align:center;
-      margin:0 auto;
-      position:relative;
-    }
-
+    /* Language switcher (same) */
     .switcher{
       position:fixed;
       top:calc(12px + var(--safe-top));
@@ -63,13 +57,8 @@
     }
     .switcher:hover{ transform:translateY(-1px); background:rgba(255,255,255,.18) }
 
-    /* Fixed header container */
     .fixed-header{
-      position:fixed;
-      top:0;
-      left:0;
-      right:0;
-      z-index:5;
+      position:fixed; top:0; left:0; right:0; z-index:5;
       background:linear-gradient(180deg, var(--bg) 0%, var(--bg) 70%, transparent 100%);
       backdrop-filter:blur(8px);
       padding:calc(100px + 12px + var(--safe-top)) 18px 20px;
@@ -77,140 +66,67 @@
       padding-right:calc(18px + var(--safe-right));
       text-align:center;
     }
+    .kicker{ display:none; font-family:"Playfair Display", serif; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-size:16px; margin:0 0 8px; }
+    .fixed-header .logo{ width:100%; max-width:640px; height:auto; margin:0; color:var(--text); filter:drop-shadow(0 2px 8px rgba(0,0,0,0.4)); }
 
-    .kicker{
-      display: none;
-      font-family:"Playfair Display", serif;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      color:var(--muted);
-      font-size:16px;
-      margin:0 0 8px;
-    }
-
-    /* Fixed header logo */
-    .fixed-header .logo{
-      width:100%;
-      max-width:640px;
-      height:auto;
-      margin:0;
-      color:var(--text);
-      filter:drop-shadow(0 2px 8px rgba(0,0,0,0.4));
-    }
-
-    /* Content wrapper with proper spacing for fixed header */
     .content-wrapper{
-      padding-top:250px;              /* Adjusted for increased header padding */
+      padding-top:250px;
       padding-bottom:40px;
       padding-left:calc(18px + var(--safe-left));
       padding-right:calc(18px + var(--safe-right));
-      min-height:100vh;               /* Ensure full viewport height */
+      min-height:100vh;
     }
 
-    @media (max-width: 768px){
-      .fixed-header .logo{ max-width:280px }
-      .kicker{ font-size:14px }
-      .content-wrapper{ padding-top:210px }
-    }
-    @media (max-width: 480px){
-      .fixed-header .logo{ max-width:240px }
-      .kicker{ font-size:13px }
-      .content-wrapper{ padding-top:190px }
-    }
+    @media (max-width: 768px){ .fixed-header .logo{ max-width:280px } .kicker{ font-size:14px } .content-wrapper{ padding-top:210px } }
+    @media (max-width: 480px){ .fixed-header .logo{ max-width:240px } .kicker{ font-size:13px } .content-wrapper{ padding-top:190px } }
 
-    h1{
-      font-family:"Playfair Display", serif;
-      font-weight:700;
-      font-size:clamp(30px, 7vw, 64px);
-      line-height:1.15;
-      margin:0 0 16px;
-      letter-spacing:.01em;
-      word-break:break-word;
-    }
-
-    /* Logo styling - mobile friendly */
-    .logo{
-      width:100%;
-      max-width:960px;
-      height:auto;
-      margin:0 0 20px;
-      color:var(--text);
-      filter:drop-shadow(0 4px 12px rgba(0,0,0,0.3));
-    }
-
-    /* Responsive logo sizing */
-    @media (max-width: 768px){
-      .logo{ max-width:320px; margin:0 0 16px }
-    }
-    @media (max-width: 480px){
-      .logo{ max-width:280px; margin:0 0 12px }
-    }
-
-    /* Plain ampersand (no special styling) */
+    h1{ font-family:"Playfair Display", serif; font-weight:700; font-size:clamp(30px, 7vw, 64px); line-height:1.15; margin:0 0 16px; letter-spacing:.01em; word-break:break-word; }
+    .logo{ width:100%; max-width:960px; height:auto; margin:0 0 20px; color:var(--text); filter:drop-shadow(0 4px 12px rgba(0,0,0,0.3)); }
+    @media (max-width: 768px){ .logo{ max-width:320px; margin:0 0 16px } }
+    @media (max-width: 480px){ .logo{ max-width:280px; margin:0 0 12px } }
     h1 .amp{ color:var(--accent); font-weight:normal; font-family: Tahoma }
+    h2{ font-family:"Playfair Display", serif; font-weight:600; font-size:clamp(18px, 4.5vw, 34px); margin:0 0 24px; color:var(--muted); }
+    .lead{ max-width:780px; margin:0 auto 24px; color:var(--muted); font-size:clamp(16px, 3.8vw, 18px); }
 
-    h2{
-      font-family:"Playfair Display", serif;
-      font-weight:600;
-      font-size:clamp(18px, 4.5vw, 34px);
-      margin:0 0 24px;
-      color:var(--muted);
-    }
-
-    .lead{
-      max-width:780px;
-      margin:0 auto 24px;
-      color:var(--muted);
-      font-size:clamp(16px, 3.8vw, 18px);
-    }
-
-    .bullets{
-      display:grid;
-      gap:14px;
-      max-width:820px;
-      margin:24px auto 36px;
-      text-align:left;
-      font-size:clamp(16px, 3.6vw, 18px);
-    }
-    .bullet{
-      display:grid;
-      grid-template-columns:auto 1fr;
-      gap:10px 12px;
-      align-items:start;
-      padding:12px 14px;
-      border-radius:14px;
-      background:rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.08);
-    }
+    .bullets{ display:grid; gap:14px; max-width:820px; margin:24px auto 36px; text-align:left; font-size:clamp(16px, 3.6vw, 18px); }
+    .bullet{ display:grid; grid-template-columns:auto 1fr; gap:10px 12px; align-items:start; padding:12px 14px; border-radius:14px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08); }
     .bullet .emoji{ font-size:20px; line-height:1.1 }
     .bullet b{ font-weight:600; color:var(--text) }
 
-    .coming{
-      letter-spacing:.28em;
-      color:var(--accent);
-      font-weight:700;
-      margin:20px 0 6px;
-      font-size:clamp(13px, 3.6vw, 18px);
-    }
-    .sub{
-      color:var(--muted);
-      margin:0 0 18px;
-      font-size:clamp(15px, 3.4vw, 17px);
-    }
+    .coming{ letter-spacing:.28em; color:var(--accent); font-weight:700; margin:20px 0 6px; font-size:clamp(13px, 3.6vw, 18px); }
+    .sub{ color:var(--muted); margin:0 0 18px; font-size:clamp(15px, 3.4vw, 17px); }
     .cta{
-      display:inline-block;
-      margin-top:6px;
-      background:var(--btn);
-      color:var(--btn-text);
-      padding:14px 22px;
-      border-radius:12px;
-      font-weight:700;
-      letter-spacing:.04em;
-      text-decoration:none;
-      transition:transform .08s ease, background .2s ease, box-shadow .2s ease;
-      box-shadow:0 8px 24px rgba(210,163,74,.25);
+      display:inline-block; margin-top:6px; background:var(--btn); color:var(--btn-text);
+      padding:14px 22px; border-radius:12px; font-weight:700; letter-spacing:.04em; text-decoration:none;
+      transition:transform .08s ease, background .2s ease, box-shadow .2s ease; box-shadow:0 8px 24px rgba(210,163,74,.25);
     }
     .cta:hover{ background:var(--btn-hover); transform:translateY(-1px) }
+
+    /* NEW: campaigns teaser block */
+    .campaigns-teaser{
+      margin:42px auto 10px;
+      max-width:840px;
+      text-align:center;
+    }
+    .campaigns-card{
+      background:var(--card);
+      color:var(--card-text);
+      border-radius:16px;
+      padding:18px;
+      border:2px solid var(--accent);
+      box-shadow:0 10px 28px rgba(0,0,0,.18);
+    }
+    .campaigns-card h3{
+      margin:8px 0 10px;
+      font-family:"Playfair Display", serif;
+      font-size:clamp(20px, 4.6vw, 28px);
+      color:#0f412f;
+    }
+    .campaigns-card p{
+      margin:0 0 14px;
+      color:#38443e;
+      font-size:clamp(14px, 3.6vw, 17px);
+    }
 
     .footer{margin-top:26px;color:var(--muted);font-size:14px}
     .footer b{ color:var(--text) }
@@ -229,54 +145,65 @@
   <!-- Main Content -->
   <main class="wrap">
     <div class="content-wrapper">
-    <h2 data-i18n="subtitle">
-      Yarının yıldızlarının<br/> bugünün sponsorlarıyla buluştuğu yer
-    </h2>
+      <h2 data-i18n="subtitle">Yarının yıldızlarının<br/> bugünün sponsorlarıyla buluştuğu yer</h2>
 
-    <p class="lead" data-i18n="lead">
-      Genç sporcuları, girişimcileri ve yaratıcıları; onlara inanan marka ve
-      sponsorlarla buluşturarak güçlendiriyoruz.
-    </p>
+      <p class="lead" data-i18n="lead">
+        Genç sporcuları, girişimcileri ve yaratıcıları; onlara inanan marka ve
+        sponsorlarla buluşturarak güçlendiriyoruz.
+      </p>
 
-    <section class="bullets">
-      <div class="bullet">
-        <div class="emoji">✨</div>
-        <div>
-          <b data-i18n="b1h">Yetenekleri Destekleyin</b>
-          — <span data-i18n="b1p">Gençlerin yükselmesi ve parlaması için fırsatlar sunuyoruz.</span>
+      <section class="bullets">
+        <div class="bullet">
+          <div class="emoji">✨</div>
+          <div>
+            <b data-i18n="b1h">Yetenekleri Destekleyin</b>
+            — <span data-i18n="b1p">Gençlerin yükselmesi ve parlaması için fırsatlar sunuyoruz.</span>
+          </div>
         </div>
-      </div>
-      <div class="bullet">
-        <div class="emoji">🤝</div>
-        <div>
-          <b data-i18n="b2h">Markalarla Bağlantı Kurun</b>
-          — <span data-i18n="b2p">Yükselen yıldızlarla sponsorlar arasında köprüler kuruyoruz.</span>
+        <div class="bullet">
+          <div class="emoji">🤝</div>
+          <div>
+            <b data-i18n="b2h">Markalarla Bağlantı Kurun</b>
+            — <span data-i18n="b2p">Yükselen yıldızlarla sponsorlar arasında köprüler kuruyoruz.</span>
+          </div>
         </div>
-      </div>
-      <div class="bullet">
-        <div class="emoji">🌍</div>
-        <div>
-          <b data-i18n="b3h">Etki Yaratın</b>
-          — <span data-i18n="b3p">Sponsorlukları sosyal değişim için güçlü bir araca dönüştürüyoruz.</span>
+        <div class="bullet">
+          <div class="emoji">🌍</div>
+          <div>
+            <b data-i18n="b3h">Etki Yaratın</b>
+            — <span data-i18n="b3p">Sponsorlukları sosyal değişim için güçlü bir araca dönüştürüyoruz.</span>
+          </div>
         </div>
+      </section>
+
+      <!-- NEW: Teaser to campaigns -->
+      <section class="campaigns-teaser" aria-labelledby="cmpTitle">
+        <div class="campaigns-card">
+          <h3 id="cmpTitle" data-i18n="cmpTitle">Kampanyalar</h3>
+          <p data-i18n="cmpLead">Kampanyalarımızı keşfedin ve destek olun.</p>
+          <a class="cta" href="campaigns.html" data-i18n="cmpCta">KAMPANYALARIMIZI GÖR</a>
+        <a href="#" target="_blank" rel="noopener" class="cta" data-i18n="cta" id="waitlistBtn">
+        BEKLEME LİSTEMİZE KATILIN
+      </a>
+        </div>
+      </section>
+
+      <!--
+      <div class="coming" data-i18n="coming">ÇOK YAKINDA</div>
+      <p class="sub" data-i18n="notify">Yayına çıktığımızda ilk siz haberdar olun.</p>
+
+      <a href="#" target="_blank" rel="noopener" class="cta" data-i18n="cta" id="waitlistBtn">
+        BEKLEME LİSTEMİZE KATILIN
+      </a>
+      -->
+
+      <div class="footer">
+        <div data-i18n="powered">
+          <a href="https://leonaanelia.com/" target="_blank" rel="noopener noreferrer"><b>LEONA ANELIA</b></a> tarafından desteklenmektedir
+        </div>
+        <div data-i18n="rights">© <span data-year></span> Tüm hakları saklıdır.</div>
       </div>
-    </section>
-
-    <div class="coming" data-i18n="coming">ÇOK YAKINDA</div>
-    <p class="sub" data-i18n="notify">Yayına çıktığımızda ilk siz haberdar olun.</p>
-
-    <!-- Waitlist: opens your Google Form -->
-    <a href="https://forms.gle/5xWYR3NpCsUGFA6s7" target="_blank" rel="noopener" class="cta" data-i18n="cta" id="waitlistBtn">
-      BEKLEME LİSTEMİZE KATILIN
-    </a>
-
-    <div class="footer">
-      <div data-i18n="powered">
-        <a href="https://leonaanelia.com/" target="_blank" rel="noopener noreferrer"><b>LEONA ANELIA</b></a> tarafından desteklenmektedir
-      </div>
-      <div data-i18n="rights">© <span data-year></span> Tüm hakları saklıdır.</div>
     </div>
-    </div> <!-- Close content-wrapper -->
   </main>
 
   <script>
@@ -298,7 +225,12 @@
         powered: `<a href="https://leonaanelia.com/" target="_blank" rel="noopener noreferrer"><b>LEONA ANELIA</b></a> tarafından desteklenmektedir`,
         rights: "© <span data-year></span> Tüm hakları saklıdır.",
         switchLabel: "🇹🇷 Türkçe",
-        waitlistUrl: "https://forms.gle/5xWYR3NpCsUGFA6s7"
+        waitlistUrl: "https://forms.gle/5xWYR3NpCsUGFA6s7",
+
+        /* NEW: campaigns teaser keys */
+        cmpTitle: "Kampanyalar",
+        cmpLead: "Kampanyalarımızı keşfedin ve destek olun.",
+        cmpCta: "KAMPANYALARIMIZI GÖR"
       },
       en: {
         kicker: "RISINGSTARS PROJECT",
@@ -317,7 +249,12 @@
         powered: `Powered by <a href="https://leonaanelia.com/" target="_blank" rel="noopener noreferrer"><b>LEONA ANELIA</b></a>`,
         rights: "© <span data-year></span> All rights reserved.",
         switchLabel: "🇬🇧 English",
-        waitlistUrl: "https://forms.gle/mrJuf88Xka4Fh5Co8"
+        waitlistUrl: "https://forms.gle/mrJuf88Xka4Fh5Co8",
+
+        /* NEW */
+        cmpTitle: "Campaigns",
+        cmpLead: "Explore our campaigns and get involved.",
+        cmpCta: "VIEW CAMPAIGNS"
       }
     };
 
@@ -330,13 +267,10 @@
       });
       document.querySelectorAll("[data-year]").forEach(el => el.textContent = new Date().getFullYear());
       const btn = document.getElementById("langSwitch");
-      btn.textContent = (lang === "tr") ? "🇹🇷 Türkçe" : "🇬🇧 English";
+      btn.textContent = (lang === "en") ? "🇹🇷 Türkçe" : "🇬🇧 English";
       btn.setAttribute("aria-label", (lang === "tr") ? "Dili değiştir" : "Change language");
-      // Update waitlist button URL based on language
       const waitlistBtn = document.getElementById("waitlistBtn");
-      if (waitlistBtn && i18n[lang].waitlistUrl) {
-        waitlistBtn.href = i18n[lang].waitlistUrl;
-      }
+      if (waitlistBtn && i18n[lang].waitlistUrl) waitlistBtn.href = i18n[lang].waitlistUrl;
       try { localStorage.setItem("rs-lang", lang); } catch(e){}
     }
 

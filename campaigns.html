@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Kampanyalar — Stars & Sponsors</title>
+<style>
+  :root{
+    --bg:#0f5d4e;
+    --text:#f6f1e7;
+    --muted:#e7dcc8;
+    --accent:#d2a34a;
+    --accent-2:#f0c56a;
+    --card:#ffffff;           /* bright cards */
+    --card-text:#1e1e1e;
+    --card-muted:#4a4a4a;
+    --frame:#e9d9b6;
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-right: env(safe-area-inset-right, 0px);
+    --safe-left: env(safe-area-inset-left, 0px);
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.45; min-height:100svh;
+  }
+
+  /* Top navigation buttons container */
+  .top-nav{
+    position:fixed; top:calc(12px + var(--safe-top)); left:0; right:0; z-index:10;
+    display:flex; justify-content:space-between; 
+    padding-left:calc(12px + var(--safe-left));
+    padding-right:calc(12px + var(--safe-right));
+    pointer-events:none;
+  }
+  
+  .top-nav > *{
+    pointer-events:auto;
+  }
+  
+  .switcher, .home-btn{
+    background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.2);
+    backdrop-filter: blur(6px); color:var(--text); padding:8px 14px; border-radius:999px;
+    font-size:14px; font-weight:700; cursor:pointer; transition:transform .08s ease, background .2s ease;
+    text-decoration:none; display:inline-block;
+  }
+  .switcher:hover, .home-btn:hover{ transform:translateY(-1px); background:rgba(255,255,255,.18) }
+
+  /* Fixed header container */
+  .fixed-header{
+    position:fixed; top:0; left:0; right:0; z-index:5;
+    background:linear-gradient(180deg, var(--bg) 0%, var(--bg) 70%, transparent 100%);
+    backdrop-filter:blur(8px);
+    padding:calc(50px + 12px + var(--safe-top)) 18px 20px;
+    padding-left:calc(18px + var(--safe-left));
+    padding-right:calc(18px + var(--safe-right));
+    text-align:center;
+  }
+  .kicker{ font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-size:16px; margin:0 0 8px; }
+  .fixed-header .logo{ width:100%; max-width:640px; height:auto; margin:0; color:var(--text); filter:drop-shadow(0 2px 8px rgba(0,0,0,0.4)); }
+  
+
+
+  .wrap{ max-width:1100px; margin:0 auto; padding:0 18px; }
+  
+  /* Content wrapper with proper spacing for fixed header */
+  .content-wrapper{
+    padding-top:200px;
+    padding-bottom:40px;
+    min-height:100vh;
+  }
+  
+  header{ text-align:center; }
+  h1{
+    margin:6px 0 8px; font-size:clamp(28px,5.8vw,52px);
+    font-weight:900; letter-spacing:.01em;
+  }
+  .lead{ color:var(--muted); font-size:clamp(15px,3.6vw,18px); margin:0 auto 16px; max-width:800px; }
+
+  .controls{
+    display:flex; justify-content:center; align-items:center; margin:22px auto 14px;
+  }
+  .search{
+    width:min(500px, 90%); background:#fff; color:#222; border-radius:12px; border:2px solid var(--frame);
+    padding:12px 14px; font-size:16px; outline:none;
+  }
+
+  /* Grid */
+  .grid{
+    display:grid; gap:16px; grid-template-columns: repeat(3, 1fr);
+    margin-top:18px;
+  }
+  @media (max-width: 768px){
+    .fixed-header .logo{ max-width:280px }
+    .kicker{ font-size:14px }
+    .content-wrapper{ padding-top:170px }
+  }
+  @media (max-width: 480px){
+    .fixed-header .logo{ max-width:240px }
+    .kicker{ font-size:13px }
+    .content-wrapper{ padding-top:160px }
+  }
+  
+  @media (max-width:960px){ .grid{ grid-template-columns: repeat(2, 1fr);} }
+  @media (max-width:620px){ .grid{ grid-template-columns: 1fr; } }
+
+  .card{
+    position:relative; overflow:hidden; border-radius:16px; background:var(--card); color:var(--card-text);
+    border:2px solid var(--accent); box-shadow:0 14px 32px rgba(0,0,0,.24);
+    text-decoration:none; display:flex; flex-direction:column; height:420px;
+    transition: transform .08s ease, box-shadow .2s ease;
+  }
+  .card:hover{ transform:translateY(-2px); box-shadow:0 18px 42px rgba(0,0,0,.28); }
+
+  .card .bg{
+    position:absolute; inset:0;
+    background-size:cover; background-position:center;
+    filter:saturate(1.05) brightness(1.05) contrast(1.05);
+    opacity:.18;
+  }
+  .card .body{
+    position:relative; padding:18px; display:flex; flex-direction:column; gap:8px;
+    height:100%; /* Ensure body takes full card height */
+  }
+  .card h3{ margin:0; font-size:22px; font-weight:900; }
+  .card p{ margin:0; color:var(--card-muted); font-size:15px; }
+
+  .badge{
+    align-self:flex-start; background:linear-gradient(180deg,var(--accent-2),var(--accent));
+    color:#1c1c1c; font-weight:800; border-radius:999px; padding:6px 10px; font-size:12px; letter-spacing:.04em;
+  }
+
+  /* Bottom section container for budget and button alignment */
+  .card-bottom{
+    margin-top:auto; padding-top:12px; border-top:1px solid rgba(0,0,0,0.1);
+  }
+
+  /* Budget section */
+  .budget{
+    margin:0 0 12px;
+  }
+  .budget-label{
+    font-size:13px; color:var(--card-muted); font-weight:600; margin-bottom:4px;
+  }
+  .budget-amount{
+    font-size:18px; font-weight:900; color:var(--accent);
+  }
+
+  /* Tags section */
+  .tags{
+    display:flex; flex-wrap:wrap; gap:6px; margin:8px 0 12px;
+    min-height:24px; /* Reserve space even when empty */
+  }
+  .tag{
+    background:rgba(210,163,74,0.15); color:var(--accent); 
+    padding:4px 8px; border-radius:6px; font-size:11px; font-weight:600;
+    border:1px solid rgba(210,163,74,0.3);
+  }
+
+  /* View details button */
+  .view-details{
+    padding:10px 14px; background:var(--accent); color:#1e1e1e;
+    border-radius:8px; text-align:center; font-weight:700; font-size:14px;
+    text-decoration:none; transition:background .2s ease;
+  }
+  .view-details:hover{ background:var(--accent-2); }
+
+  .empty{
+    text-align:center; color:var(--muted); margin:24px 0 8px; display:none;
+  }
+
+  .back{
+    display:inline-block; margin:10px auto 0; background:var(--accent); color:#1e1e1e;
+    padding:10px 16px; border-radius:10px; text-decoration:none; font-weight:800;
+  }
+</style>
+</head>
+<body>
+<!-- Top Navigation Buttons -->
+<div class="top-nav">
+  <a href="index.html" class="home-btn" data-i18n="back">Ana Sayfa</a>
+  <button id="langSwitch" class="switcher" aria-label="Dili değiştir">🇹🇷 Türkçe</button>
+</div>
+
+<!-- Fixed Header -->
+<header class="fixed-header">
+  <div class="kicker" data-i18n="kicker">RISINGSTARS PROJESİ</div>
+  <img src="ss_logo_yellow_white.png" alt="Stars & Sponsors" class="logo" />
+</header>
+
+<div class="wrap">
+  <div class="content-wrapper">
+    <header>
+      <h1 data-i18n="title">Kampanyalar</h1>
+      <p class="lead" data-i18n="lead">Kampanyalarımızı keşfedin ve destek olun.</p>
+      <div class="controls">
+        <input class="search" id="q" type="search" placeholder="Ara…" data-i18n-placeholder="searchPhTr" />
+      </div>
+    </header>
+
+  <section id="grid" class="grid" aria-live="polite">
+    <!-- Card 1: Efe -->
+    <div class="card" data-title-tr="Yükselen Yıldız #001 — Efe Kabataş"
+       data-title-en="Rising Star #001 — Efe Kabataş"
+       data-desc-tr="Hız onun dili, amaç yakıtı. Kampanyayı destekleyin."
+       data-desc-en="Speed is his language; purpose is his fuel. Support the campaign."
+       data-budget-tr="35.000 EUR"
+       data-budget-en="35,000 EUR"
+       data-tags-tr="carting"
+       data-tags-en="carting">
+      <div class="bg" style="background-image:url('img/efe.png')"></div>
+      <div class="body">
+        <span class="badge" data-i18n="badgeLive">YAYINDA</span>
+        <h3 data-i18n-dyn="title"></h3>
+        <p data-i18n-dyn="desc"></p>
+        <div class="card-bottom">
+          <div class="budget">
+            <div class="budget-label" data-i18n="budgetLabel">Bütçe</div>
+            <div class="budget-amount" data-i18n-dyn="budget"></div>
+          </div>
+          <div class="tags">
+            <span class="tag" data-i18n-dyn="tags"></span>
+          </div>
+          <a href="efe.html" class="view-details" data-i18n="viewDetails">Detayları Görüntüle</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2: Coming soon -->
+    <div class="card" data-title-tr="Yükselen Yıldız #002"
+       data-title-en="Rising Star #002"
+       data-desc-tr="Çok yakında yeni bir kampanya."
+       data-desc-en="A new campaign is coming soon."
+       data-budget-tr="TBA"
+       data-budget-en="TBA"
+       data-tags-tr=""
+       data-tags-en="">
+      <div class="bg" style="background-image:linear-gradient(135deg,#ffe082,#fff)"></div>
+      <div class="body">
+        <span class="badge" data-i18n="badgeSoon">YAKINDA</span>
+        <h3 data-i18n-dyn="title"></h3>
+        <p data-i18n-dyn="desc"></p>
+        <div class="card-bottom">
+          <div class="budget">
+            <div class="budget-label" data-i18n="budgetLabel">Bütçe</div>
+            <div class="budget-amount" data-i18n-dyn="budget"></div>
+          </div>
+          <div class="tags">
+            <!-- Empty tags section maintains layout spacing -->
+          </div>
+          <a href="#" class="view-details" onclick="event.preventDefault(); return false;" data-i18n="viewDetailsSoon">Yakında</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3: Coming soon -->
+    <div class="card" data-title-tr="Yükselen Yıldız #003"
+       data-title-en="Rising Star #003"
+       data-desc-tr="Çok yakında yeni bir kampanya."
+       data-desc-en="A new campaign is coming soon."
+       data-budget-tr="TBA"
+       data-budget-en="TBA"
+       data-tags-tr=""
+       data-tags-en="">
+      <div class="bg" style="background-image:linear-gradient(135deg,#fff59d,#fff)"></div>
+      <div class="body">
+        <span class="badge" data-i18n="badgeSoon">YAKINDA</span>
+        <h3 data-i18n-dyn="title"></h3>
+        <p data-i18n-dyn="desc"></p>
+        <div class="card-bottom">
+          <div class="budget">
+            <div class="budget-label" data-i18n="budgetLabel">Bütçe</div>
+            <div class="budget-amount" data-i18n-dyn="budget"></div>
+          </div>
+          <div class="tags">
+            <!-- Empty tags section maintains layout spacing -->
+          </div>
+          <a href="#" class="view-details" onclick="event.preventDefault(); return false;" data-i18n="viewDetailsSoon">Yakında</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <p id="empty" class="empty" data-i18n="empty">Aramanızla eşleşen kampanya bulunamadı.</p>
+  </div>
+</div>
+
+<script>
+  const i18n = {
+    tr: {
+      kicker: "RISINGSTARS PROJESİ",
+      title: "Kampanyalar",
+      lead: "Kampanyalarımızı keşfedin ve destek olun.",
+      back: "Ana Sayfa",
+      badgeLive: "YAYINDA",
+      badgeSoon: "YAKINDA",
+      empty: "Aramanızla eşleşen kampanya bulunamadı.",
+      searchPhTr: "Ara…",
+      switch: "🇹🇷 Türkçe",
+      budgetLabel: "Bütçe",
+      viewDetails: "Detayları Görüntüle",
+      viewDetailsSoon: "Yakında"
+    },
+    en: {
+      kicker: "RISINGSTARS PROJECT",
+      title: "Campaigns",
+      lead: "Explore our campaigns and get involved.",
+      back: "Home",
+      badgeLive: "LIVE",
+      badgeSoon: "SOON",
+      empty: "No campaigns match your search.",
+      searchPhTr: "Search…",
+      switch: "🇬🇧 English",
+      budgetLabel: "Budget",
+      viewDetails: "View Details",
+      viewDetailsSoon: "Coming Soon"
+    }
+  };
+
+  const html = document.documentElement;
+  const switcher = document.getElementById('langSwitch');
+  const grid = document.getElementById('grid');
+  const empty = document.getElementById('empty');
+  const q = document.getElementById('q');
+
+  function applyLang(lang){
+    html.lang = lang;
+    // static strings
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const key = el.getAttribute('data-i18n');
+      if(i18n[lang][key] !== undefined) el.innerHTML = i18n[lang][key];
+    });
+    // input placeholder
+    const phKey = 'searchPhTr';
+    if (i18n[lang][phKey]) q.placeholder = i18n[lang][phKey];
+
+    // dynamic card titles/descriptions
+    document.querySelectorAll('[data-i18n-dyn="title"]').forEach(h=>{
+      const card = h.closest('.card');
+      h.textContent = card.getAttribute(lang === 'tr' ? 'data-title-tr' : 'data-title-en');
+    });
+    document.querySelectorAll('[data-i18n-dyn="desc"]').forEach(p=>{
+      const card = p.closest('.card');
+      p.textContent = card.getAttribute(lang === 'tr' ? 'data-desc-tr' : 'data-desc-en');
+    });
+    
+    // dynamic budget amounts
+    document.querySelectorAll('[data-i18n-dyn="budget"]').forEach(b=>{
+      const card = b.closest('.card');
+      b.textContent = card.getAttribute(lang === 'tr' ? 'data-budget-tr' : 'data-budget-en');
+    });
+    
+    // dynamic tags
+    document.querySelectorAll('[data-i18n-dyn="tags"]').forEach(t=>{
+      const card = t.closest('.card');
+      const tagText = card.getAttribute(lang === 'tr' ? 'data-tags-tr' : 'data-tags-en');
+      if (tagText && tagText.trim()) {
+        t.textContent = tagText;
+        t.style.display = 'inline-block';
+      } else {
+        t.style.display = 'none';
+      }
+    });
+
+    // switcher label + persist
+    var langKey = (lang === 'tr') ? 'en' : 'tr';    
+    switcher.textContent = i18n[langKey].switch;
+    switcher.setAttribute('aria-label', lang === 'en' ? 'Dili değiştir' : 'Change language');
+    try{ localStorage.setItem('rs-lang', lang); }catch(e){}
+  }
+
+  
+  function currentLang(){
+    try{
+      const saved = localStorage.getItem('rs-lang');
+      if (saved === 'en' || saved === 'tr') return saved;
+    }catch(e){}
+    return 'tr'; // default
+  }
+
+  // search filter
+  function filter(){
+    const term = (q.value || '').toLowerCase().trim();
+    let shown = 0;
+    grid.querySelectorAll('.card').forEach(card=>{
+      const title = (card.getAttribute(html.lang === 'tr' ? 'data-title-tr' : 'data-title-en')||'').toLowerCase();
+      const desc  = (card.getAttribute(html.lang === 'tr' ? 'data-desc-tr' : 'data-desc-en')||'').toLowerCase();
+      const tags  = (card.getAttribute(html.lang === 'tr' ? 'data-tags-tr' : 'data-tags-en')||'').toLowerCase();
+      const match = !term || title.includes(term) || desc.includes(term) || tags.includes(term);
+      card.style.display = match ? '' : 'none';
+      if (match) shown++;
+    });
+    empty.style.display = shown ? 'none' : 'block';
+  }
+
+  switcher.addEventListener('click', ()=>{
+    applyLang(html.lang === 'tr' ? 'en' : 'tr');
+    filter(); // re-run in case language changed search text
+  });
+  q.addEventListener('input', filter);
+
+  // init
+  applyLang(currentLang());
+  filter();
+</script>
+</body>
+</html>
