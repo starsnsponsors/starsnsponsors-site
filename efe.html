@@ -81,8 +81,18 @@
   .goal svg{ width:48px; height:48px; flex:0 0 48px; display:block }
   .goal b{ font-weight:900 }
 
-  .powered{ font-weight:900; font-size:clamp(16px,1.8vw,22px); margin:8px 0 }
   .sub{ color:var(--muted); font-size:clamp(14px,1.6vw,18px); margin-bottom:40px }
+  
+  /* PDF section */
+  .pdf-section{ margin:24px 0 }
+  .pdf-button{
+    display:inline-block; padding:12px 18px; background:var(--accent); color:#0a0b0a;
+    border-radius:8px; font-weight:700; font-size:clamp(14px,1.6vw,18px);
+    text-decoration:none; transition:all .2s ease;
+    box-shadow:0 2px 0 rgba(0,0,0,.25) inset;
+  }
+  .pdf-button:hover{ transform:translateY(-1px); box-shadow:0 4px 12px rgba(139,195,74,0.3); }
+  
   .contact{ margin-top:36px; font-size:clamp(14px,1.8vw,22px) }
 
   @media (max-width: 768px){
@@ -129,8 +139,11 @@
           <div><b data-i18n="goal">KAMPANYA HEDEFİ:</b> <span>35.000 €</span></div>
         </div>
 
-        <div class="powered" data-i18n="powered">STARS & SPONSORS TARAFINDAN DESTEKLENİYOR</div>
-        <div class="sub" data-i18n="tagline">Yarının yıldızlarının bugünün sponsorlarıyla buluştuğu yer</div>
+        <div class="sub" data-i18n="tagline">17 yaşındaki Efe Kabataş, Türkiye Karting Şampiyonası'nda yarışan genç bir sporcudur. Motor sporlarına 12 yaşında başlamış, ulusal yarışlarda dereceler elde etmiştir. Hedefi, Türkiye'yi uluslararası arenada temsil etmektir. TOSFED'e bağlı olarak amatör kategoride yarıştığı için, sponsorluk destekleri %100 vergiden düşülebilir niteliktedir.</div>
+
+        <div class="pdf-section">
+          <a href="docs/efe_sunum.pdf" target="_blank" class="pdf-button" data-i18n="pdfButton">📄 Kampanya Sunumu PDF</a>
+        </div>
 
         <div class="contact"><span data-i18n="contact">İletişim</span>:
           <div>
@@ -154,9 +167,9 @@ const rsStrings = {
     "quote-tr": "\"Hız benim dilimdir -<br>amaç yakıtımdır\"",
     "quote-en": "\"Speed is my language -<br>purpose is my fuel\"",
     goal: "KAMPANYA HEDEFİ:",
-    powered: "STARS & SPONSORS TARAFINDAN DESTEKLENİYOR",
-    tagline: "Yarının yıldızlarının bugünün sponsorlarıyla buluştuğu yer",
+    tagline: "17 yaşındaki Efe Kabataş, Türkiye Karting Şampiyonası'nda yarışan genç bir sporcudur. Motor sporlarına 12 yaşında başlamış, ulusal yarışlarda dereceler elde etmiştir. Hedefi, Türkiye'yi uluslararası arenada temsil etmektir. TOSFED'e bağlı olarak amatör kategoride yarıştığı için, sponsorluk destekleri %100 vergiden düşülebilir niteliktedir.",
     contact: "İletişim",
+    pdfButton: "Kampanya Sunumu PDF",
     switchLabel: "🇹🇷 Türkçe"
   },
   en: {
@@ -166,9 +179,9 @@ const rsStrings = {
     "quote-tr": "\"Speed is my language -<br>purpose is my fuel\"",
     "quote-en": "\"Speed is my language -<br>purpose is my fuel\"",
     goal: "CAMPAIGN GOAL:",
-    powered: "POWERED BY STARS & SPONSORS",
-    tagline: "Where tomorrow's stars meet today's sponsors",
+    tagline: "17 year old Efe Kabataş is competing in the Turkish Karting Championship. He began motorsports at the age of 12 and has achieved national rankings. His goal is to represent Turkey internationally. Because he competes in the amateur category under TOSFED, his sponsorship support is 100% tax-deductible.",
     contact: "Contact",
+    pdfButton: "Campaign Presentation PDF",
     switchLabel: "🇬🇧 English"
   }
 };
