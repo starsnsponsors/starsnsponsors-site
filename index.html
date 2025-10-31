@@ -544,10 +544,20 @@ function handleScroll() {
 
 window.addEventListener('scroll', handleScroll);
 
-// Click toggles between tr/en (same behavior as main page)
+// Handle language change for waitlist button
+function updateWaitlistUrl(lang) {
+  const waitlistBtn = document.getElementById("waitlistBtnCarousel");
+  if (waitlistBtn) {
+    waitlistBtn.href = rsStrings[lang].waitlistUrl;
+  }
+}
+
+// Language switch event listener
 document.getElementById("langSwitch").addEventListener("click", ()=>{
   const current = document.documentElement.lang || "tr";
-  applyLang(current === "tr" ? "en" : "tr");
+  const newLang = current === "tr" ? "en" : "tr";
+  applyLang(newLang);
+  updateWaitlistUrl(newLang);
 });
 
 // Init: default Turkish, then respect saved choice if present
@@ -565,22 +575,6 @@ document.getElementById("langSwitch").addEventListener("click", ()=>{
     waitlistBtn.href = rsStrings[lang].waitlistUrl;
   }
 })();
-
-// Handle language change for waitlist button
-function updateWaitlistUrl(lang) {
-  const waitlistBtn = document.getElementById("waitlistBtnCarousel");
-  if (waitlistBtn) {
-    waitlistBtn.href = rsStrings[lang].waitlistUrl;
-  }
-}
-
-// Update the language switch to also update waitlist URL
-document.getElementById("langSwitch").addEventListener("click", ()=>{
-  const current = document.documentElement.lang || "tr";
-  const newLang = current === "tr" ? "en" : "tr";
-  applyLang(newLang);
-  updateWaitlistUrl(newLang);
-});
 </script>
 </body>
 </html>
