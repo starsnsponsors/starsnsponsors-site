@@ -17,7 +17,7 @@
   body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.25}
 
   /* Frame */
-  .frame{min-height:100%;border:2px solid var(--frame);padding:28px;position:relative;padding-top:200px;}
+  .frame{min-height:100%;border:2px solid var(--frame);padding:28px;position:relative;padding-top:230px;}
 
   /* Top navigation buttons container */
   .top-nav{
@@ -52,6 +52,21 @@
   }
   .kicker{ font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-size:16px; margin:0 0 8px; }
   .fixed-header .logo{ width:100%; max-width:640px; height:auto; margin:0; color:var(--text); filter:drop-shadow(0 2px 8px rgba(0,0,0,0.4)); }
+
+  /* Campaigns navigation */
+  .campaigns-nav{
+    position:fixed; top:calc(180px + var(--safe-top)); left:0; right:0; z-index:6;
+    text-align:center;
+    padding-left:calc(18px + var(--safe-left));
+    padding-right:calc(18px + var(--safe-right));
+  }
+  .campaigns-btn{
+    background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.2);
+    backdrop-filter: blur(6px); color:var(--text); padding:8px 16px; border-radius:999px;
+    font-size:14px; font-weight:700; text-decoration:none; display:inline-block;
+    transition:transform .08s ease, background .2s ease;
+  }
+  .campaigns-btn:hover{ transform:translateY(-1px); background:rgba(255,255,255,.18) }
 
   /* Hero section */
   .hero{
@@ -98,12 +113,14 @@
   @media (max-width: 768px){
     .fixed-header .logo{ max-width:280px }
     .kicker{ font-size:14px }
-    .frame{ padding-top:170px }
+    .campaigns-nav{ top:calc(150px + var(--safe-top)) }
+    .frame{ padding-top:190px }
   }
   @media (max-width: 480px){
     .fixed-header .logo{ max-width:240px }
     .kicker{ font-size:13px }
-    .frame{ padding-top:160px }
+    .campaigns-nav{ top:calc(140px + var(--safe-top)) }
+    .frame{ padding-top:180px }
   }
   
   @media (max-width:860px){ .hero{min-height:auto;padding-bottom:40px} .content{max-width:100%} }
@@ -112,7 +129,7 @@
 <body>
 <!-- Top Navigation Buttons -->
 <div class="top-nav">
-  <a href="campaigns.html" class="home-btn" data-i18n="back">Kampanyalar</a>
+  <a href="index.html" class="home-btn" data-i18n="homeBtn">Ana Sayfa</a>
   <button id="langSwitch" class="switcher" aria-label="Dili değiştir">🇹🇷 Türkçe</button>
 </div>
 
@@ -120,6 +137,11 @@
 <header class="fixed-header">
   <img src="ss_logo_yellow_white.png" alt="Stars & Sponsors" class="logo" />
 </header>
+
+<!-- Campaigns Button -->
+<div class="campaigns-nav">
+  <a href="campaigns.html" class="campaigns-btn" data-i18n="back">Kampanyalar</a>
+</div>
 
   <div class="frame">
     <section class="hero" role="img" aria-label="Kask görseli sağda">
@@ -163,6 +185,7 @@ const rsStrings = {
   tr: {
     kicker: "RISINGSTARS PROJESİ",
     back: "Kampanyalar",
+    homeBtn: "Ana Sayfa",
     eyebrow: "YÜKSELEN YILDIZ #001",
     "quote-tr": "\"Hız benim dilimdir -<br>amaç yakıtımdır\"",
     "quote-en": "\"Speed is my language -<br>purpose is my fuel\"",
@@ -175,6 +198,7 @@ const rsStrings = {
   en: {
     kicker: "RISINGSTARS PROJECT",
     back: "Campaigns",
+    homeBtn: "Home",
     eyebrow: "RISING STAR #001",
     "quote-tr": "\"Speed is my language -<br>purpose is my fuel\"",
     "quote-en": "\"Speed is my language -<br>purpose is my fuel\"",
