@@ -17,7 +17,7 @@
   body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.25}
 
   /* Frame */
-  .frame{min-height:100%;background:transparent;padding:20px;position:relative;padding-top:90px;}
+  .frame{min-height:100%;background:transparent;padding:20px;position:relative;padding-top:120px;}
 
   /* Top navigation buttons container */
   .top-nav{
@@ -154,12 +154,32 @@
   .slide-pdf-btn:hover{ transform:translateY(-1px); box-shadow:0 4px 12px rgba(139,195,74,0.3); }
   
   .slide-cta{
-    display:inline-block; padding:12px 24px; background:var(--accent); color:#0a0b0a;
-    border-radius:8px; font-weight:700; text-decoration:none; transition:all 0.2s ease;
-    border:none; cursor:pointer;
+    display:inline-block; padding:12px 24px; 
+    background:rgba(255,255,255,0.1); 
+    color:var(--text);
+    border-radius:8px; font-weight:700; text-decoration:none; 
+    transition:all 0.2s ease;
+    border:1px solid rgba(255,255,255,0.2); 
+    cursor:pointer;
+    backdrop-filter:blur(6px);
+    box-shadow:0 2px 8px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.3);
+    position:relative;
+    overflow:hidden;
+  }
+  .slide-cta:before{
+    content:'';
+    position:absolute;
+    top:0; left:-100%; width:100%; height:100%;
+    background:linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition:left 0.5s ease;
   }
   .slide-cta:hover:not(.disabled){
-    background:#9ccc65; transform:translateY(-1px);
+    background:rgba(255,255,255,0.15); 
+    transform:translateY(-1px);
+    box-shadow:0 4px 12px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.4);
+  }
+  .slide-cta:hover:before{
+    left:100%;
   }
   .slide-cta.disabled{
     opacity:0.5; cursor:not-allowed;
@@ -254,6 +274,7 @@
   <button id="langSwitch" class="switcher" aria-label="Dili değiştir">🇹🇷 Türkçe</button>
 </div>
 
+
 <!-- Fixed Header -->
 <header class="fixed-header">
   <img src="ss_logo_yellow_white.png" alt="Stars & Sponsors" class="logo" />
@@ -268,14 +289,14 @@
       </div> -->
       
       <!-- Top Carousel Navigation -->
-      <div class="carousel-nav-top">
+      <!-- <div class="carousel-nav-top">
         <button class="carousel-btn prev" id="prevBtnTop">‹</button>
         <div class="carousel-dots">
           <button class="dot active" data-slide="0"></button>
           <button class="dot" data-slide="1"></button>
         </div>
         <button class="carousel-btn next" id="nextBtnTop">›</button>
-      </div>
+      </div> -->
       
       <div class="carousel-container">
         <div class="carousel-track" id="carouselTrack">
@@ -290,30 +311,44 @@
                 <h1>EFE KABATAŞ</h1>
                 <!-- <div class="slide-quote" data-i18n="quote-tr">"Hız benim dilimdir -<br>amaç yakıtımdır"</div> -->
                 
-                <div class="slide-goal-enhanced" aria-label="Kampanya hedefi">
+                <div class="slide-goal-enhanced" aria-label="HEDEF:">
                   <svg viewBox="0 0 64 64" aria-hidden="true">
                     <circle cx="32" cy="32" r="30" fill="none" stroke="#0a0b0a" stroke-width="6"/>
                     <circle cx="32" cy="32" r="20" fill="none" stroke="#0a0b0a" stroke-width="6"/>
                     <circle cx="32" cy="32" r="10" fill="#0a0b0a"/>
                     <circle cx="32" cy="32" r="4" fill="#8bc34a"/>
                   </svg>
-                  <div><b data-i18n="goal">KAMPANYA HEDEFİ:</b> <span>35.000 €</span></div>
+                  <div><b data-i18n="efeGoal">HEDEF:</b> <span data-i18n="efeGoalText">2026 Türkiye Karting Şampiyonası</span></div>
+                </div>
+
+                <div class="slide-goal-enhanced" aria-label="BÜTÇE">
+                  <svg viewBox="0 0 64 64" aria-hidden="true">
+                    <circle cx="32" cy="32" r="30" fill="none" stroke="#0a0b0a" stroke-width="6"/>
+                    <circle cx="32" cy="32" r="20" fill="none" stroke="#0a0b0a" stroke-width="6"/>
+                    <circle cx="32" cy="32" r="10" fill="#0a0b0a"/>
+                    <circle cx="32" cy="32" r="4" fill="#8bc34a"/>
+                  </svg>
+                  <div><b data-i18n="goal">BÜTÇE:</b> <span>35.000 €</span></div>
                 </div>
                 
-                <div class="slide-description-full" data-i18n="tagline">
+               
+                
+                <!-- <div class="slide-description-full" data-i18n="tagline">
                   17 yaşındaki Efe Kabataş, Türkiye Karting Şampiyonası'nda yarışan genç bir sporcudur. Motor sporlarına 12 yaşında başlamış, ulusal yarışlarda dereceler elde etmiştir. Hedefi, Türkiye'yi uluslararası arenada temsil etmektir. TOSFED'e bağlı olarak amatör kategoride yarıştığı için, sponsorluk destekleri %100 vergiden düşülebilir niteliktedir.
                 </div>
-                
+                 -->
                 <div class="slide-actions">
+                  <!--                   
                   <a href="docs/efe_sunum.pdf" target="_blank" class="slide-pdf-btn" data-i18n="pdfButton">📄 Kampanya Sunumu PDF</a>
+                   -->
                   <a href="efe.html" class="slide-cta" data-i18n="slideCta">Kampanyayı Görüntüle</a>
                 </div>
                 
-                <div class="slide-contact">
+                <!-- <div class="slide-contact">
                   <span data-i18n="contact">İletişim</span>:
                   <div><a href="mailto:senihaozgur@hotmail.com">senihaozgur@hotmail.com</a></div>
                   <div><a href="tel:+905442701716">+90 (544) 270 11 16</a></div>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -356,10 +391,32 @@
                 <div class="slide-description-full" data-i18n="aboutLead">
                   Genç sporcuları, girişimcileri ve yaratıcıları; onlara inanan marka ve sponsorlarla buluşturarak güçlendiriyoruz.
                 </div>
-                
                 <div class="slide-actions">
-                  <a href="campaigns.html" class="slide-cta" data-i18n="aboutCampaignsCta">Kampanyalarımızı Gör</a>
+                  <!-- <a href="campaigns.html" class="slide-cta" data-i18n="aboutCampaignsCta">Kampanyalarımızı Gör</a> -->
                   <a href="#" target="_blank" class="slide-pdf-btn" data-i18n="aboutWaitlistCta" id="waitlistBtnCarousel">Bekleme Listesine Katıl</a>
+                </div>
+                <div class="slide-contact">
+                  <span data-i18n="contact">İletişim</span>
+                  <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 8px;">
+                    <a href="mailto:senihaozgur@hotmail.com">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 6px;">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                      </svg>
+                      Email
+                    </a>
+                    <a href="https://wa.me/905442701716" target="_blank" rel="noopener noreferrer">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 6px;">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.464 3.488"/>
+                      </svg>
+                      WhatsApp
+                    </a>
+                    <a href="https://www.linkedin.com/company/starsnsponsors" target="_blank" rel="noopener noreferrer">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 6px;">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                      </svg>
+                      LinkedIn
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -379,6 +436,19 @@
     </section>
   </div>
 
+  <!-- Footer -->
+  <footer style="margin-top: 60px; padding: 40px 20px; background: rgba(0,0,0,0.2); text-align: center;">
+    <div style="max-width: 1400px; margin: 0 auto;">
+      <div style="margin-bottom: 20px; color: var(--muted); font-size: 14px;">
+        <div style="margin-bottom: 8px;" data-i18n="powered">
+          <a href="https://leonaanelia.com/" target="_blank" rel="noopener noreferrer" style="color: var(--text); text-decoration: underline; text-underline-offset: 3px;"><b>LEONA ANELIA</b></a> tarafından desteklenmektedir
+        </div>
+
+        <div data-i18n="rights">© <span data-year></span> Tüm hakları saklıdır.</div>
+      </div>
+    </div>
+  </footer>
+
 <script>
 /* i18n strings */
 const rsStrings = {
@@ -388,7 +458,7 @@ const rsStrings = {
     eyebrow: "YÜKSELEN YILDIZ #001",
     "quote-tr": "\"Hız benim dilimdir -<br>amaç yakıtımdır\"",
     "quote-en": "\"Speed is my language -<br>purpose is my fuel\"",
-    goal: "KAMPANYA HEDEFİ:",
+    goal: "BÜTÇE:",
     tagline: "17 yaşındaki Efe Kabataş, Türkiye Karting Şampiyonası'nda yarışan genç bir sporcudur. Motor sporlarına 12 yaşında başlamış, ulusal yarışlarda dereceler elde etmiştir. Hedefi, Türkiye'yi uluslararası arenada temsil etmektir. TOSFED'e bağlı olarak amatör kategoride yarıştığı için, sponsorluk destekleri %100 vergiden düşülebilir niteliktedir.",
     contact: "İletişim",
     pdfButton: "Kampanya Sunumu PDF",
@@ -401,7 +471,7 @@ const rsStrings = {
     slideDescription: "17 yaşındaki Efe Kabataş, Türkiye Karting Şampiyonası'nda yarışan genç bir sporcudur.",
     slideCta: "Kampanyayı Görüntüle",
     aboutEyebrow: "HAKKIMIZDA",
-    aboutTitle: "STARS & SPONSORS",
+    aboutTitle: "STARS'nSPONSORS",
     aboutSubtitle: "Yarının yıldızlarının bugünün sponsorlarıyla buluştuğu yer",
     aboutLead: "Genç sporcuları, girişimcileri ve yaratıcıları; onlara inanan marka ve sponsorlarla buluşturarak güçlendiriyoruz.",
     b1h: "Yetenekleri Destekleyin",
@@ -412,7 +482,11 @@ const rsStrings = {
     b3p: "Sponsorlukları sosyal değişim için güçlü bir araca dönüştürüyoruz.",
     aboutCampaignsCta: "Kampanyalarımızı Gör",
     aboutWaitlistCta: "Bekleme Listesine Katıl",
-    waitlistUrl: "https://forms.gle/5xWYR3NpCsUGFA6s7"
+    waitlistUrl: "https://forms.gle/5xWYR3NpCsUGFA6s7",
+    efeGoal: "HEDEF:",
+    efeGoalText: "2026 Türkiye Karting Şampiyonası",
+    powered: `<a href="https://leonaanelia.com/" target="_blank" rel="noopener noreferrer" style="color: var(--text); text-decoration: underline; text-underline-offset: 3px;"><b>LEONA ANELIA</b></a> tarafından desteklenmektedir`,
+    rights: "© <span data-year></span> Tüm hakları saklıdır."
   },
   en: {
     kicker: "RISINGSTARS PROJECT",
@@ -420,7 +494,7 @@ const rsStrings = {
     eyebrow: "RISING STAR #001",
     "quote-tr": "\"Speed is my language -<br>purpose is my fuel\"",
     "quote-en": "\"Speed is my language -<br>purpose is my fuel\"",
-    goal: "CAMPAIGN GOAL:",
+    goal: "BUDGET:",
     tagline: "17 year old Efe Kabataş is competing in the Turkish Karting Championship. He began motorsports at the age of 12 and has achieved national rankings. His goal is to represent Turkey internationally. Because he competes in the amateur category under TOSFED, his sponsorship support is 100% tax-deductible.",
     contact: "Contact",
     pdfButton: "Campaign Presentation PDF",
@@ -433,7 +507,7 @@ const rsStrings = {
     slideDescription: "17-year-old Efe Kabataş is competing in the Turkish Karting Championship.",
     slideCta: "View Campaign",
     aboutEyebrow: "ABOUT US",
-    aboutTitle: "STARS & SPONSORS",
+    aboutTitle: "STARS'nSPONSORS",
     aboutSubtitle: "Where tomorrow's stars meet today's sponsors",
     aboutLead: "We empower young athletes, entrepreneurs, and creatives by connecting them with the brands and sponsors who believe in their future.",
     b1h: "Support Talent",
@@ -444,7 +518,11 @@ const rsStrings = {
     b3p: "Transforming sponsorships into powerful tools for social change.",
     aboutCampaignsCta: "View Our Campaigns",
     aboutWaitlistCta: "Join Our Waitlist",
-    waitlistUrl: "https://forms.gle/mrJuf88Xka4Fh5Co8"
+    waitlistUrl: "https://forms.gle/mrJuf88Xka4Fh5Co8",
+    efeGoal: "GOAL:",
+    efeGoalText: "2026 Turkish Karting Championship",
+    powered: `Powered by <a href="https://leonaanelia.com/" target="_blank" rel="noopener noreferrer" style="color: var(--text); text-decoration: underline; text-underline-offset: 3px;"><b>LEONA ANELIA</b></a>`,
+    rights: "© <span data-year></span> All rights reserved."
   }
 };
 
@@ -470,6 +548,9 @@ function applyLang(lang){
   const btn = document.getElementById("langSwitch");
   btn.textContent = (lang === "en") ? rsStrings.tr.switchLabel : rsStrings.en.switchLabel;
   btn.setAttribute("aria-label", (lang === "en") ? "Dili değiştir" : "Change language");
+
+  // Update year in footer
+  document.querySelectorAll("[data-year]").forEach(el => el.textContent = new Date().getFullYear());
 
   try{ localStorage.setItem("rs-lang", lang); }catch(e){}
 }
@@ -509,15 +590,16 @@ function prevSlide() {
 // Event listeners
 document.getElementById('nextBtn').addEventListener('click', nextSlide);
 document.getElementById('prevBtn').addEventListener('click', prevSlide);
-document.getElementById('nextBtnTop').addEventListener('click', nextSlide);
-document.getElementById('prevBtnTop').addEventListener('click', prevSlide);
+// document.getElementById('nextBtnTop').addEventListener('click', nextSlide);
+// document.getElementById('prevBtnTop').addEventListener('click', prevSlide);
+
 
 dots.forEach((dot, index) => {
   dot.addEventListener('click', () => showSlide(index));
 });
 
 // Auto-advance carousel
-let autoAdvance = setInterval(nextSlide, 15000);
+let autoAdvance = setInterval(nextSlide, 30000);
 let isScrolling = false;
 let scrollTimeout;
 
@@ -526,7 +608,7 @@ const carouselContainer = document.querySelector('.carousel-container');
 carouselContainer.addEventListener('mouseenter', () => clearInterval(autoAdvance));
 carouselContainer.addEventListener('mouseleave', () => {
   if (!isScrolling) {
-    autoAdvance = setInterval(nextSlide, 15000);
+    autoAdvance = setInterval(nextSlide, 30000);
   }
 });
 
@@ -538,7 +620,7 @@ function handleScroll() {
   clearTimeout(scrollTimeout);
   scrollTimeout = setTimeout(() => {
     isScrolling = false;
-    autoAdvance = setInterval(nextSlide, 15000);
+    autoAdvance = setInterval(nextSlide, 30000);
   }, 1000);
 }
 

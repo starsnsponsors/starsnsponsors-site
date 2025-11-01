@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Yükselen Yıldız #001 – Efe Kabataş</title>
+<style>
+  :root{
+    --bg:#1b1f1e; --bg-2:#141715; --accent:#8bc34a;
+    --text:#f2f4f3; --muted:#b7bbb9; --card:#0f1110; --frame:#2a2d2b;
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-right: env(safe-area-inset-right, 0px);
+    --safe-left: env(safe-area-inset-left, 0px);
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0}
+  body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.25}
+
+  /* Frame */
+  .frame{min-height:100%;border:2px solid var(--frame);padding:28px;position:relative;padding-top:230px;}
+
+  /* Top navigation buttons container */
+  .top-nav{
+    position:fixed; top:calc(12px + var(--safe-top)); left:0; right:0; z-index:10;
+    display:flex; justify-content:space-between; 
+    padding-left:calc(12px + var(--safe-left));
+    padding-right:calc(12px + var(--safe-right));
+    pointer-events:none;
+  }
+  
+  .top-nav > *{
+    pointer-events:auto;
+  }
+  
+  .switcher, .home-btn{
+    background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.2);
+    backdrop-filter: blur(6px); color:var(--text); padding:8px 14px; border-radius:999px;
+    font-size:14px; font-weight:700; cursor:pointer; transition:transform .08s ease, background .2s ease;
+    text-decoration:none; display:inline-block;
+  }
+  .switcher:hover, .home-btn:hover{ transform:translateY(-1px); background:rgba(255,255,255,.18) }
+
+  /* Fixed header container */
+  .fixed-header{
+    position:fixed; top:0; left:0; right:0; z-index:5;
+    background:linear-gradient(180deg, var(--bg) 0%, var(--bg) 70%, transparent 100%);
+    backdrop-filter:blur(8px);
+    padding:calc(50px + 12px + var(--safe-top)) 18px 20px;
+    padding-left:calc(18px + var(--safe-left));
+    padding-right:calc(18px + var(--safe-right));
+    text-align:center;
+  }
+  .kicker{ font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-size:16px; margin:0 0 8px; }
+  .fixed-header .logo{ width:100%; max-width:640px; height:auto; margin:0; color:var(--text); filter:drop-shadow(0 2px 8px rgba(0,0,0,0.4)); }
+
+  /* Campaigns navigation */
+  .campaigns-nav{
+    position:fixed; top:calc(180px + var(--safe-top)); left:0; right:0; z-index:6;
+    text-align:center;
+    padding-left:calc(18px + var(--safe-left));
+    padding-right:calc(18px + var(--safe-right));
+  }
+  .campaigns-btn{
+    background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.2);
+    backdrop-filter: blur(6px); color:var(--text); padding:8px 16px; border-radius:999px;
+    font-size:14px; font-weight:700; text-decoration:none; display:inline-block;
+    transition:transform .08s ease, background .2s ease;
+  }
+  .campaigns-btn:hover{ transform:translateY(-1px); background:rgba(255,255,255,.18) }
+
+  /* Hero section */
+  .hero{
+    position: relative;
+    min-height: calc(100vh - 200px);
+    background:
+      linear-gradient(90deg, var(--bg-2) 0%, rgba(20,23,21,0.88) 46%, rgba(20,23,21,0.30) 62%, rgba(20,23,21,0) 74%),
+      url("img/efe.png") right center / contain no-repeat;
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+  .content{ max-width:780px; padding:24px 24px 36px }
+
+  .eyebrow{ font-weight:800; letter-spacing:.02em; color:var(--accent); font-size:clamp(22px,3vw,44px); margin:8px 0 6px }
+  h1{ margin:0 0 18px; font-size:clamp(35px,5.5vw,70px); font-weight:900; letter-spacing:.02em }
+  .quote{ font-size:clamp(20px,2.6vw,34px); margin:10px 0 28px }
+
+  /* Goal badge */
+  .goal{
+    display:inline-flex; align-items:center; gap:16px;
+    background:var(--accent); color:#0a0b0a;
+    border-radius:6px; padding:16px 22px 16px 18px;
+    font-weight:800; font-size:clamp(16px,2vw,24px);
+    box-shadow:0 2px 0 rgba(0,0,0,.25) inset; margin:6px 0 38px
+  }
+  .goal svg{ width:48px; height:48px; flex:0 0 48px; display:block }
+  .goal b{ font-weight:900 }
+
+  .sub{ color:var(--muted); font-size:clamp(14px,1.6vw,18px); margin-bottom:40px }
+  
+  /* PDF section */
+  .pdf-section{ margin:24px 0 }
+  .pdf-button{
+    display:inline-block; padding:12px 18px; background:var(--accent); color:#0a0b0a;
+    border-radius:8px; font-weight:700; font-size:clamp(14px,1.6vw,18px);
+    text-decoration:none; transition:all .2s ease;
+    box-shadow:0 2px 0 rgba(0,0,0,.25) inset;
+  }
+  .pdf-button:hover{ transform:translateY(-1px); box-shadow:0 4px 12px rgba(139,195,74,0.3); }
+  
+  .contact{ margin-top:36px; font-size:clamp(14px,1.8vw,22px) }
+
+  @media (max-width: 768px){
+    .fixed-header .logo{ max-width:280px }
+    .kicker{ font-size:14px }
+    .campaigns-nav{ top:calc(150px + var(--safe-top)) }
+    .frame{ padding-top:190px }
+  }
+  @media (max-width: 480px){
+    .fixed-header .logo{ max-width:240px }
+    .kicker{ font-size:13px }
+    .campaigns-nav{ top:calc(140px + var(--safe-top)) }
+    .frame{ padding-top:180px }
+  }
+  
+  @media (max-width:860px){ .hero{min-height:auto;padding-bottom:40px} .content{max-width:100%} }
+</style>
+</head>
+<body>
+<!-- Top Navigation Buttons -->
+<div class="top-nav">
+  <a href="index.html" class="home-btn" data-i18n="homeBtn">Ana Sayfa</a>
+  <button id="langSwitch" class="switcher" aria-label="Dili değiştir">🇹🇷 Türkçe</button>
+</div>
+
+<!-- Fixed Header -->
+<header class="fixed-header">
+  <img src="ss_logo_yellow_white.png" alt="Stars & Sponsors" class="logo" />
+</header>
+
+<!-- Campaigns Button -->
+<div class="campaigns-nav">
+  <a href="campaigns.html" class="campaigns-btn" data-i18n="back">Kampanyalar</a>
+</div>
+
+  <div class="frame">
+    <section class="hero" role="img" aria-label="Kask görseli sağda">
+      <div class="content">
+        <div class="eyebrow" data-i18n="eyebrow">YÜKSELEN YILDIZ #001</div>
+        <h1>EFE KABATAŞ</h1>
+
+        <!-- <div class="quote" data-i18n="quote-tr">"Hız benim dilimdir -<br>amaç yakıtımdır"</div> -->
+
+        <div class="goal" aria-label="Kampanya hedefi">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <circle cx="32" cy="32" r="30" fill="none" stroke="#0f1110" stroke-width="6"/>
+            <circle cx="32" cy="32" r="20" fill="none" stroke="#0f1110" stroke-width="6"/>
+            <circle cx="32" cy="32" r="10" fill="#0f1110"/>
+            <circle cx="32" cy="32" r="4" fill="var(--accent)"/>
+          </svg>
+          <div><b data-i18n="goal">KAMPANYA HEDEFİ:</b> <span>35.000 €</span></div>
+        </div>
+
+        <div class="sub" data-i18n="tagline">17 yaşındaki Efe Kabataş, Türkiye Karting Şampiyonası'nda yarışan genç bir sporcudur. Motor sporlarına 12 yaşında başlamış, ulusal yarışlarda dereceler elde etmiştir. Hedefi, Türkiye'yi uluslararası arenada temsil etmektir. TOSFED'e bağlı olarak amatör kategoride yarıştığı için, sponsorluk destekleri %100 vergiden düşülebilir niteliktedir.</div>
+
+        <div class="pdf-section">
+          <a href="docs/efe_sunum.pdf" target="_blank" class="pdf-button" data-i18n="pdfButton">📄 Kampanya Sunumu PDF</a>
+        </div>
+
+        <div class="contact"><span data-i18n="contact">İletişim</span>
+          <div>
+            <a href="mailto:senihaozgur@hotmail.com" style="color:white">senihaozgur@hotmail.com</a> 
+          </div>
+          <div style="margin-top:10px">
+            <a href="tel:+905442701716" style="color:white">+90 (544) 270 11 16</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+<script>
+/* i18n strings */
+const rsStrings = {
+  tr: {
+    kicker: "RISINGSTARS PROJESİ",
+    back: "Kampanyalar",
+    homeBtn: "Ana Sayfa",
+    eyebrow: "YÜKSELEN YILDIZ #001",
+    "quote-tr": "\"Hız benim dilimdir -<br>amaç yakıtımdır\"",
+    "quote-en": "\"Speed is my language -<br>purpose is my fuel\"",
+    goal: "KAMPANYA HEDEFİ:",
+    tagline: "17 yaşındaki Efe Kabataş, Türkiye Karting Şampiyonası'nda yarışan genç bir sporcudur. Motor sporlarına 12 yaşında başlamış, ulusal yarışlarda dereceler elde etmiştir. Hedefi, Türkiye'yi uluslararası arenada temsil etmektir. TOSFED'e bağlı olarak amatör kategoride yarıştığı için, sponsorluk destekleri %100 vergiden düşülebilir niteliktedir.",
+    contact: "İletişim",
+    pdfButton: "Kampanya Sunumu PDF",
+    switchLabel: "🇹🇷 Türkçe",
+    powered: `<a href="https://leonaanelia.com/" target="_blank" rel="noopener noreferrer" style="color: var(--text); text-decoration: underline; text-underline-offset: 3px;"><b>LEONA ANELIA</b></a> tarafından desteklenmektedir`,
+    rights: "© Tüm hakları saklıdır."
+  },
+  en: {
+    kicker: "RISINGSTARS PROJECT",
+    back: "Campaigns",
+    homeBtn: "Home",
+    eyebrow: "RISING STAR #001",
+    "quote-tr": "\"Speed is my language -<br>purpose is my fuel\"",
+    "quote-en": "\"Speed is my language -<br>purpose is my fuel\"",
+    goal: "CAMPAIGN GOAL:",
+    tagline: "17 year old Efe Kabataş is competing in the Turkish Karting Championship. He began motorsports at the age of 12 and has achieved national rankings. His goal is to represent Turkey internationally. Because he competes in the amateur category under TOSFED, his sponsorship support is 100% tax-deductible.",
+    contact: "Contact",
+    pdfButton: "Campaign Presentation PDF",
+    switchLabel: "🇬🇧 English",
+    powered: `Powered by <a href="https://leonaanelia.com/" target="_blank" rel="noopener noreferrer" style="color: var(--text); text-decoration: underline; text-underline-offset: 3px;"><b>LEONA ANELIA</b></a>`,
+    rights: "© All rights reserved."
+  }
+};
+
+function applyLang(lang){
+  document.documentElement.lang = lang;
+
+  // Apply base keys
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const key = el.getAttribute("data-i18n");
+    const map = rsStrings[lang];
+    if(map && map[key] !== undefined){
+      el.innerHTML = map[key];
+    }
+  });
+
+  // Handle the quote which uses different keys to keep <br> intact
+  const quote = document.querySelector(".quote");
+  if (quote){
+    quote.innerHTML = (lang === "tr") ? rsStrings.tr["quote-tr"] : rsStrings.en["quote-en"];
+  }
+
+  // Update switcher label + aria
+  const btn = document.getElementById("langSwitch");
+  btn.textContent = (lang === "en") ? rsStrings.tr.switchLabel : rsStrings.en.switchLabel;
+  btn.setAttribute("aria-label", (lang === "en") ? "Dili değiştir" : "Change language");
+
+  // Update year in footer
+  document.querySelectorAll("[data-year]").forEach(el => el.textContent = new Date().getFullYear());
+
+  try{ localStorage.setItem("rs-lang", lang); }catch(e){}
+}
+
+// Click toggles between tr/en (same behavior as main page)
+document.getElementById("langSwitch").addEventListener("click", ()=>{
+  const current = document.documentElement.lang || "tr";
+  applyLang(current === "tr" ? "en" : "tr");
+});
+
+// Init: default Turkish, then respect saved choice if present
+(function init(){
+  let lang = "tr"; // default
+  try{
+    const saved = localStorage.getItem("rs-lang");
+    if (saved === "en" || saved === "tr") lang = saved;
+  }catch(e){}
+  applyLang(lang);
+})();
+</script>
+
+<!-- Footer -->
+<footer style="margin-top: 60px; padding: 40px 20px; background: rgba(0,0,0,0.2); text-align: center;">
+  <div style="max-width: 1000px; margin: 0 auto;">
+    <div style="margin-bottom: 20px; color: var(--muted); font-size: 14px;">
+      <div style="margin-bottom: 8px;" data-i18n="powered">
+        <a href="https://leonaanelia.com/" target="_blank" rel="noopener noreferrer" style="color: var(--text); text-decoration: underline; text-underline-offset: 3px;"><b>LEONA ANELIA</b></a> tarafından desteklenmektedir
+      </div>
+
+      <div data-i18n="rights">© <span data-year></span> Tüm hakları saklıdır.</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

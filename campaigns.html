@@ -300,7 +300,9 @@
       switch: "🇹🇷 Türkçe",
       budgetLabel: "Bütçe",
       viewDetails: "Detayları Görüntüle",
-      viewDetailsSoon: "Yakında"
+      viewDetailsSoon: "Yakında",
+      powered: `<a href="https://leonaanelia.com/" target="_blank" rel="noopener noreferrer" style="color: var(--text); text-decoration: underline; text-underline-offset: 3px;"><b>LEONA ANELIA</b></a> tarafından desteklenmektedir`,
+      rights: "© Tüm hakları saklıdır."
     },
     en: {
       kicker: "RISINGSTARS PROJECT",
@@ -314,7 +316,9 @@
       switch: "🇬🇧 English",
       budgetLabel: "Budget",
       viewDetails: "View Details",
-      viewDetailsSoon: "Coming Soon"
+      viewDetailsSoon: "Coming Soon",
+      powered: `Powered by <a href="https://leonaanelia.com/" target="_blank" rel="noopener noreferrer" style="color: var(--text); text-decoration: underline; text-underline-offset: 3px;"><b>LEONA ANELIA</b></a>`,
+      rights: "© All rights reserved."
     }
   };
 
@@ -367,6 +371,10 @@
     var langKey = (lang === 'tr') ? 'en' : 'tr';    
     switcher.textContent = i18n[langKey].switch;
     switcher.setAttribute('aria-label', lang === 'en' ? 'Dili değiştir' : 'Change language');
+    
+    // Update year in footer
+    document.querySelectorAll("[data-year]").forEach(el => el.textContent = new Date().getFullYear());
+    
     try{ localStorage.setItem('rs-lang', lang); }catch(e){}
   }
 
@@ -404,5 +412,19 @@
   applyLang(currentLang());
   filter();
 </script>
+
+<!-- Footer -->
+<footer style="margin-top: 60px; padding: 40px 20px; background: rgba(0,0,0,0.2); text-align: center;">
+  <div style="max-width: 1000px; margin: 0 auto;">
+    <div style="margin-bottom: 20px; color: var(--muted); font-size: 14px;">
+      <div style="margin-bottom: 8px;" data-i18n="powered">
+        <a href="https://leonaanelia.com/" target="_blank" rel="noopener noreferrer" style="color: var(--text); text-decoration: underline; text-underline-offset: 3px;"><b>LEONA ANELIA</b></a> tarafından desteklenmektedir
+      </div>
+
+      <div data-i18n="rights">© <span data-year></span> Tüm hakları saklıdır.</div>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>
