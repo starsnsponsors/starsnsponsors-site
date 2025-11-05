@@ -4,6 +4,11 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Yükselen Yıldız #001 – Efe Kabataş</title>
+<!-- Cache Busting Meta Tags -->
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<meta name="cache-buster" content="20251105001" />
 <style>
   :root{
     --bg:#1b1f1e; --bg-2:#141715; --accent:#8bc34a;
@@ -655,6 +660,19 @@ document.getElementById("langSwitch").addEventListener("click", ()=>{
   const waitlistBtn = document.getElementById("waitlistBtnCarousel");
   if (waitlistBtn) {
     waitlistBtn.href = rsStrings[lang].waitlistUrl;
+  }
+})();
+
+// Auto Cache Buster - Force refresh on development
+(function(){
+  const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.port;
+  if (isDev) {
+    // Add timestamp to force reload in development
+    const timestamp = new Date().getTime();
+    document.querySelector('meta[name="cache-buster"]').setAttribute('content', timestamp);
+    
+    // Optional: Auto-refresh every 30 seconds in development (comment out if not needed)
+    // setTimeout(() => window.location.reload(), 30000);
   }
 })();
 </script>
